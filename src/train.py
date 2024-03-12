@@ -17,6 +17,8 @@ dataloader = torch.utils.data.DataLoader(dataset, batch_size=HyperParams.BATCH_S
 criterion = CustomLossFN()
 optimizer = torch.optim.Adam(model.parameters(), lr=HyperParams.LR)
 
+best_loss = np.inf
+
 for epoch in range(HyperParams.N_EPOCHS):
     epoch_loss = 0
     for i, data in tqdm(enumerate(dataloader), total=len(dataloader)):
@@ -33,3 +35,7 @@ for epoch in range(HyperParams.N_EPOCHS):
         optimizer.step()
 
     print(f"Epoch: {epoch}, Iter: {i}, Loss: {epoch_loss/len(dataloader)}")
+    if epoch_loss < best_loss:
+        best_loss = epoch_loss
+        torch.save(model.state_dict(), "best_model.pth")
+        print("Model saved!")
