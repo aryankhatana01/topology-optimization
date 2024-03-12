@@ -11,7 +11,7 @@ print("TRAINING ON: ", HyperParams.DEVICE)
 model = TOModel()
 model = model.to(HyperParams.DEVICE)
 
-dataset = TODataset("/Users/0x4ry4n/Desktop/dev/btp/h5ds/dataset.h5", uniform_sampler(), transforms=None)
+dataset = TODataset(HyperParams.DATA_PATH, uniform_sampler(), transforms=None)
 dataloader = torch.utils.data.DataLoader(dataset, batch_size=HyperParams.BATCH_SIZE, shuffle=True)
 
 criterion = CustomLossFN()
