@@ -2,6 +2,7 @@ import h5py
 import numpy as np
 import matplotlib.pyplot as plt
 
+a = 10
 with h5py.File("h5ds/dataset.h5", 'r') as h5f:
     X = h5f['iters']
     Y = h5f['targets']
